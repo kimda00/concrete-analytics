@@ -3,6 +3,9 @@
 `concrete_data.csv`를 대상으로 **데이터 로드 → 결측 비율 출력 → 분포/이상치 시각화 → IQR 경계 대체 → 상관관계 분석 → 주요 특징 산점도 → MinMax/StandardScaler 비교**를 수행  
 시각화 결과는 `./plots` 폴더에 저장 (화면에도 표시)
 
+KFold를 활용하여 데이터 분할
+모델 별 결과 비교
+
 ## Requirements
 - Python 3.8+
 - pandas, numpy
@@ -30,3 +33,5 @@ pip install pandas numpy matplotlib seaborn scikit-learn
 8. Top-3 Features vs Target Scatter → plots/scatter_top3_vs_target.png
 
 9. Scaling Comparison: MinMax/StandardScaler 적용 후 통계 비교 테이블 출력 (+ plots/scaling_comparison_stats.csv 저장)
+
+10. Modeling 결과 비교 : LinearRegression, DecisionTreeRegressor, RandomForestRegressor, GradientBoostingRegressor
