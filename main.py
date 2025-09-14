@@ -7,6 +7,7 @@ from src.viz import (
     heatmap_corr, scatter_cement_water_strength,
     scatter_top_features_vs_target
 )
+from src.modeling import train_and_evaluate_models
 from src.processing import scaling_comparison_table, save_table_csv
 
 DATA_PATH = "./data/concrete_data.csv"
@@ -18,6 +19,8 @@ def main():
 
     # 1) Load & Basic prints
     df = load_data(DATA_PATH)
+    print("Data loaded successfully. First 5 rows:")
+    print(df.head())
     print_missing_ratio(df)
 
     # 2) Hist & Boxplot (before)
@@ -46,6 +49,11 @@ def main():
     print(comp.round(3))
     # CSV로 저장하고 싶으면:
     save_table_csv(comp.round(3), f"{PLOT_DIR}/scaling_comparison_stats.csv")
+
+    # 9) Train and evaluate models
+    # 이상치 처리된 데이터를 모델링에 사용
+    results = train_and_evaluate_models(df_capped, target_column=TARGET)
+    print(results.groupby('test_name').mean())
 
 if __name__ == "__main__":
     main()
